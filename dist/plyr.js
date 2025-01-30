@@ -548,10 +548,10 @@ typeof navigator === "object" && (function (global, factory) {
 
   // Mirror Element.classList.toggle, with IE compatibility for "force" argument
   function toggleClass(element, className, force) {
-    if (is.nodeList(element)) {
+    if (element && is.nodeList(element)) {
       return Array.from(element).map(e => toggleClass(e, className, force));
     }
-    if (is.element(element)) {
+    if (element && is.element(element)) {
       let method = 'toggle';
       if (typeof force !== 'undefined') {
         method = force ? 'add' : 'remove';
@@ -564,7 +564,7 @@ typeof navigator === "object" && (function (global, factory) {
 
   // Has class name
   function hasClass(element, className) {
-    return is.element(element) && element.classList.contains(className);
+    return element && is.element(element) && element.classList.contains(className);
   }
 
   // Element matches selector
@@ -7760,12 +7760,13 @@ typeof navigator === "object" && (function (global, factory) {
       _defineProperty$1(this, "toggleControls", toggle => {
         // Don't toggle if missing UI support or if it's audio
         if (this.supported.ui && !this.isAudio) {
+          var _this$elements, _this$elements2;
           // Get state before change
-          const isHidden = hasClass(this.elements.container, this.config.classNames.hideControls);
+          const isHidden = hasClass((_this$elements = this.elements) === null || _this$elements === void 0 ? void 0 : _this$elements.container, this.config.classNames.hideControls);
           // Negate the argument if not undefined since adding the class to hides the controls
           const force = typeof toggle === 'undefined' ? undefined : !toggle;
           // Apply and get updated state
-          const hiding = toggleClass(this.elements.container, this.config.classNames.hideControls, force);
+          const hiding = toggleClass((_this$elements2 = this.elements) === null || _this$elements2 === void 0 ? void 0 : _this$elements2.container, this.config.classNames.hideControls, force);
 
           // Close menu
           if (hiding && is.array(this.config.controls) && this.config.controls.includes('settings') && !is.empty(this.config.settings)) {
@@ -7787,7 +7788,8 @@ typeof navigator === "object" && (function (global, factory) {
        * @param {Function} callback - Callback for when event occurs
        */
       _defineProperty$1(this, "on", (event, callback) => {
-        on.call(this, this.elements.container, event, callback);
+        var _this$elements3;
+        on.call(this, (_this$elements3 = this.elements) === null || _this$elements3 === void 0 ? void 0 : _this$elements3.container, event, callback);
       });
       /**
        * Add event listeners once
@@ -7795,7 +7797,8 @@ typeof navigator === "object" && (function (global, factory) {
        * @param {Function} callback - Callback for when event occurs
        */
       _defineProperty$1(this, "once", (event, callback) => {
-        once.call(this, this.elements.container, event, callback);
+        var _this$elements4;
+        once.call(this, (_this$elements4 = this.elements) === null || _this$elements4 === void 0 ? void 0 : _this$elements4.container, event, callback);
       });
       /**
        * Remove event listeners
@@ -7803,7 +7806,8 @@ typeof navigator === "object" && (function (global, factory) {
        * @param {Function} callback - Callback for when event occurs
        */
       _defineProperty$1(this, "off", (event, callback) => {
-        off(this.elements.container, event, callback);
+        var _this$elements5;
+        off((_this$elements5 = this.elements) === null || _this$elements5 === void 0 ? void 0 : _this$elements5.container, event, callback);
       });
       /**
        * Destroy an instance

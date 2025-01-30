@@ -1067,11 +1067,11 @@ class Plyr {
     // Don't toggle if missing UI support or if it's audio
     if (this.supported.ui && !this.isAudio) {
       // Get state before change
-      const isHidden = hasClass(this.elements.container, this.config.classNames.hideControls);
+      const isHidden = hasClass(this.elements?.container, this.config.classNames.hideControls);
       // Negate the argument if not undefined since adding the class to hides the controls
       const force = typeof toggle === 'undefined' ? undefined : !toggle;
       // Apply and get updated state
-      const hiding = toggleClass(this.elements.container, this.config.classNames.hideControls, force);
+      const hiding = toggleClass(this.elements?.container, this.config.classNames.hideControls, force);
 
       // Close menu
       if (
@@ -1101,7 +1101,7 @@ class Plyr {
    * @param {Function} callback - Callback for when event occurs
    */
   on = (event, callback) => {
-    on.call(this, this.elements.container, event, callback);
+    on.call(this, this.elements?.container, event, callback);
   };
 
   /**
@@ -1110,7 +1110,7 @@ class Plyr {
    * @param {Function} callback - Callback for when event occurs
    */
   once = (event, callback) => {
-    once.call(this, this.elements.container, event, callback);
+    once.call(this, this.elements?.container, event, callback);
   };
 
   /**
@@ -1119,7 +1119,7 @@ class Plyr {
    * @param {Function} callback - Callback for when event occurs
    */
   off = (event, callback) => {
-    off(this.elements.container, event, callback);
+    off(this.elements?.container, event, callback);
   };
 
   /**
